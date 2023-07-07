@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+
+    
+       <title>Number guessing game</title>
+    
+
+
+    <style>
+      html {
+        font-family: 'Lucida Sans';
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100vh; /* Adjust the height to your preference */
+        margin: 0 auto;
+        background-color: #42c8f5;
+      }
+
+      .title{
+        display: flex;
+        gap: 10px;
+    
+      }
+      .BingoBall{
+        letter-spacing: 2px;
+      background-color: blue;
+      color: antiquewhite;
+      border-radius: 100px;
+      padding:40px 40px 40px 40px;
+      }
+
+      .Ball{
+      border: white;
+      border-style:solid;
+      }
+      .BallBig{ 
+      display: flex;
+      align-items: center;
+      margin-top: 30px;
+      height: 100px;
+      color: antiquewhite;
+      border-radius: 100px;
+      padding:10px 47px 10px 47px;}
+      
+      .BallSmall{
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      height: 70px;
+      color: antiquewhite;
+      border-radius: 100px;
+      padding:10px 35px 10px 35px;
+      }
+      #ball5{
+        font-size: 10; 
+        background-color: #00ff00;
+      }
+      #ball2{
+        background-color: #ff0066;
+      }
+      #ball7{
+        background-color: #ff9900;
+      }
+      #ball3{
+        background-color: #000000;
+      }
+
+      .main{
+        border: white;
+        border-style:solid; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #000000;
+        font-size: 32px;
+        padding: 40px 45px 40px 45px;
+        border-radius: 100px;
+        padding: 40px 45px 40px 45px;
+        min-height: 100px;
+        min-width: 100px;
+  
+      }
+      h1{
+        font-size: 42px;
+      }
+      .title .BallBig {
+        font-size: 38px;
+        font-weight: 600;
+      }
+      .title .BallSmall {
+        font-weight: 600;
+        font-size: 34px;
+      }
+      .mystyle{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 62px;
+        color:aliceblue;
+        border-radius: 100px;
+        padding: 40px 45px 40px 45px;
+        min-height: 100px;
+        min-width: 100px;
+      }
+      label[for = guessField]{
+        font-size: 24px;
+
+      }
+      input[type=text]{
+        border-radius: 10px;
+        min-height: 30px;
+      }
+      input[type=submit]{
+        min-height: 90px;
+        border-radius: 90px;
+        padding: 55px 30px 55px 30px;
+        color:#ff0066;
+        font-weight: 600;
+        font-size: 24px;
+      }
+      .guesses{
+        font-size: 24px;
+        font-weight: 600;
+        color: aliceblue;
+      }
+    </style>
+  </head>
+
+  <body>
+
+ <div class="title">
+      <div class="Ball BallSmall" id = "ball5"> <p>5</p></div>
+      <div class="Ball BallBig" id = "ball2"> <p>2</p></p></div>
+      <div class="Ball BingoBall"> <h1>Bingo</h1></div>
+      <div class="Ball BallBig" id = "ball7"> <p>7</p></div>
+      <div class="Ball BallSmall" id = "ball3"> <p>3</p></div>
+    </div>
+    <p class="main">This is game where you need to pick your 7 lucky numbers and you win if your numers gets pulled out </p>
+<div class="form">
+  <label for="guessField">Enter your lucky numbers: </label>
+  <input type="text" id="guessField" class="guessField">
+  <input type="submit" value="Submit" class="guessSubmit">
+</div>
+
+<div class="resultParas">
+  <p class="guesses"></p>
+  <p class="pulledNumbers"></p>
+</div>
+
+</body>
+
+<script>
+  
+  const guesses = document.querySelector('.guesses');
+  const pulledNumbers = document.querySelector('.pulledNumbers');
+  const guessSubmit = document.querySelector('.guessSubmit');
+  const guessField = document.querySelector('.guessField');
+  const main = document.querySelector('.main');
+  const body = document.querySelector('body');
+  let resetButton;
+  guessSubmit.addEventListener('click', StartGame);
+  
+  let randomNumbers = [];
+  for(let i = 0; i<7; i++){
+  randomNumbers[i] = Math.floor(Math.random()*100) + 1;
+  }
+  console.log(randomNumbers);
+
+
+  function getRandomColor() {
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+
+  const color = `rgb(${red}, ${green}, ${blue})`;
+  return color;
+  }
+
+  function pullNumbers(duration){
+    counter = 0;
+    const timerId = setInterval(function(){
+      pulledNumbers.textContent += `  ${randomNumbers[counter]}`;
+      main.classList.add("mystyle");
+      main.classList.add("Ball");
+      main.style.backgroundColor = getRandomColor();
+      main.textContent =`  ${randomNumbers[counter]}`;
+      counter ++;
+      if(counter == duration){
+       clearInterval(timerId);
+       checkGuess();
+       }
+  },1000);
+
+  }
+
+function StartGame(){
+  const pulledNumbers = document.querySelector('.pulledNumbers');
+  pulledNumbers.textContent = `Pulled numbers: `;
+  pullNumbers(7);
+}
+
+
+  function checkGuess() {
+    const userGuess = guessField.value;
+    userGuessArray = [];
+    userGuessArray = userGuess.split(" ");
+    guesses.textContent = `Your numbers : ${userGuessArray}`;
+    let matchs = 0;
+    for(let i = 0; i<7; i++){
+      for(let j = 0; j<7; j++){
+        if(userGuessArray[i]==randomNumbers[j]){
+          matchs++;
+        }
+      }
+    }     
+    if(matchs == 7){
+      body.style.backgroundColor = '#03fc0f';
+      setGameOver();
+    }
+    else{
+      body.style.backgroundColor = 'red';
+      setGameOver();
+    }
+  }
+ 
+
+
+
+  function setGameOver() {
+	  guessField.disabled = true;
+	  guessSubmit.disabled = true;
+	  resetButton = document.createElement('button');
+	  resetButton.textContent = 'Start new game';
+	  document.body.appendChild(resetButton);
+	  resetButton.addEventListener('click', resetGame);
+  }
+
+  function resetGame() {
+     const resetParas = document.querySelectorAll('.resultParas p');
+     for (const resetPara of resetParas) {
+       resetPara.textContent = '';
+     }
+     main.style.backgroundColor = '#42c8f5';
+     main.classList.remove("mystyle");
+     main.classList.remove("Ball");
+     main.textContent = 'This is game where you need to pick your 7 lucky numbers and you win if your numers gets pulled out'; 
+	   resetButton.parentNode.removeChild(resetButton);
+	   guessField.disabled = false;
+	   guessSubmit.disabled = false;
+	   guessField.value = '';
+	   guessField.focus();
+	  body.style.backgroundColor = '#42c8f5';
+    for(let i =0; i<7; i++){
+    randomNumbers[i] = Math.floor(Math.random()*100) + 1;
+    }
+    console.log(randomNumbers);
+  }
+</script>
+</html>
