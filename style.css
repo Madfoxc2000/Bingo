@@ -1,0 +1,144 @@
+html {
+    font-family: 'Lucida Sans';
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh; /* Adjust the height to your preference */
+    margin: 0 auto;
+    background-color: #42c8f5;
+  }
+
+  .title{
+    display: flex;
+    gap: 10px;
+
+  }
+  .BingoBall{
+    letter-spacing: 2px;
+  background-color: blue;
+  color: antiquewhite;
+  border-radius: 100px;
+  padding:40px 40px 40px 40px;
+  }
+
+  .Ball{
+  border: white;
+  border-style:solid;
+  }
+  .BallBig{ 
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  height: 100px;
+  color: antiquewhite;
+  border-radius: 100px;
+  padding:10px 47px 10px 47px;}
+  
+  .BallSmall{
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  height: 70px;
+  color: antiquewhite;
+  border-radius: 100px;
+  padding:10px 35px 10px 35px;
+  }
+  #ball5{
+    font-size: 10; 
+    background-color: #00ff00;
+  }
+  #ball2{
+    background-color: #ff0066;
+  }
+  #ball7{
+    background-color: #ff9900;
+  }
+  #ball3{
+    background-color: #000000;
+  }
+
+  .main{
+    border: white;
+    border-style:solid; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    font-size: 32px;
+    padding: 40px 45px 40px 45px;
+    border-radius: 100px;
+    padding: 40px 45px 40px 45px;
+    min-height: 100px;
+    min-width: 100px;
+
+  }
+  h1{
+    font-size: 42px;
+  }
+  .title .BallBig {
+    font-size: 38px;
+    font-weight: 600;
+  }
+  .title .BallSmall {
+    font-weight: 600;
+    font-size: 34px;
+  }
+  .mystyle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 62px;
+    color:aliceblue;
+    border-radius: 100px;
+    padding: 40px 45px 40px 45px;
+    min-height: 100px;
+    min-width: 100px;
+  }
+  .pulledBall{
+    border: white;
+    border-style:solid;
+    font-weight: 600;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    min-height: 70px;
+    min-width: 50px;
+    color: antiquewhite;
+    border-radius: 100px;
+    padding:14px 25px 14px 25px;
+  }
+  label[for = guessField]{
+    font-size: 24px;
+
+  }
+  input[type=text]{
+    border-radius: 10px;
+    min-height: 30px;
+  }
+  input[type=submit]{
+    min-height: 90px;
+    border-radius: 90px;
+    padding: 55px 30px 55px 30px;
+    color:#ff0066;
+    font-weight: 600;
+    font-size: 24px;
+  }
+  .guesses{
+    font-size: 24px;
+    font-weight: 600;
+    color: aliceblue;
+  }
+  .hits{
+    font-size: 24px;
+    font-weight: 600;
+    color: aliceblue;
+  }
+  .pulledNumbers{
+    display: flex;
+    gap: 10px;
+      }
